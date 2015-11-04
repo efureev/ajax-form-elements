@@ -1,0 +1,27 @@
+{
+  "name": "ajax-form-elements",
+  "description": "Form elements with action: ajax, custom (user custom functions)",
+  "version": "0.1",
+  "homepage": "https://github.com/efureev/ajax-form-elements",
+  "main": [
+    "dist/afe.min.js",
+    "dist/afe.min.css"
+  ],
+  "keywords": [
+    "form",
+    "ajax",
+    "form input",
+    "form element",
+    "javascript",
+    "jquery",
+    "jquery-plugin"
+  ],
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": ">= 2.1.4"
+  },
+  "devDependencies": {}
+}
