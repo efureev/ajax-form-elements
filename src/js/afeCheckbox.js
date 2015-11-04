@@ -1,22 +1,4 @@
-/**
- * @params    {function} onChecked
- * @params    {function} onUnchecked
- *
- * ~
- * element input DATA-properties:
- *
- * @{data-url} - use POST request
- * @{data-type} type for input
- * ~
- *
- * @params    {function} onSuccess
- * @params    {function} onFail
- * @params    {function} onDone
- * @params    {function} onAlways
- *
- * @returns {*|jQuery}
- */
-$.fn.afeCheckbox = function (options) {
+Afe.form.checkbox = function (options) {
 	var post = function (url, data) {
 			return $.post(url, data, Afe.isFunction($default.onSuccess) ? $default.onSuccess : Afe.noop())
 				.done(Afe.isFunction($default.onDone) ? $default.onDone : Afe.noop())
@@ -95,7 +77,6 @@ $.fn.afeCheckbox = function (options) {
 				.on('unchecked', function (e) {
 					_default.onUnchecked($this, e);
 				});
-
 
 			// check if the checkbox is checked on init.
 			if ($this.is(':checked')) {

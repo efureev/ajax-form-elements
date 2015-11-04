@@ -61,7 +61,13 @@ var Afe = Afe || {}, core = {
 
 Afe.apply(Afe, core);
 
-$.fn.afeCheckbox = function(a) {
+var Afe = Afe || {}, form = {};
+
+Afe.form = {};
+
+Afe.apply(Afe.form, form);
+
+Afe.form.checkbox = function(a) {
     var b = function(a, b) {
         return $.post(a, b, Afe.isFunction(c.onSuccess) ? c.onSuccess : Afe.noop()).done(Afe.isFunction(c.onDone) ? c.onDone : Afe.noop()).fail(Afe.isFunction(c.onFail) ? c.onFail : Afe.noop()).always(Afe.isFunction(c.onAlways) ? c.onAlways : Afe.noop());
     }, c = {
@@ -126,7 +132,7 @@ $.fn.afeCheckbox = function(a) {
     });
 };
 
-$.fn.afeRadiobox = function(a) {
+Afe.form.radiobox = function(a) {
     var b = function(a, b) {
         return $.post(a, b, Afe.isFunction(c.onSuccess) ? c.onSuccess : Afe.noop()).done(Afe.isFunction(c.onDone) ? c.onDone : Afe.noop()).fail(Afe.isFunction(c.onFail) ? c.onFail : Afe.noop()).always(Afe.isFunction(c.onAlways) ? c.onAlways : Afe.noop());
     }, c = {
@@ -192,3 +198,7 @@ $.fn.afeRadiobox = function(a) {
         }
     });
 };
+
+$.fn.afeCheckbox = Afe.form.checkbox;
+
+$.fn.afeRadiobox = Afe.form.radiobox;

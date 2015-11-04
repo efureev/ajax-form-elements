@@ -1,4 +1,4 @@
-$.fn.afeRadiobox = function (options) {
+Afe.form.radiobox = function (options) {
 
 	var post = function (url, data) {
 			return $.post(url, data, Afe.isFunction($default.onSuccess) ? $default.onSuccess : Afe.noop())
@@ -84,7 +84,6 @@ $.fn.afeRadiobox = function (options) {
 					_default.onSelectBasic($this);
 					_default.onSelect($this);
 				});
-
 
 			// check if the radio is checked on init.
 			$('label.radio').each(function (k, value) {

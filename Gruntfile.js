@@ -8,8 +8,10 @@ module.exports = function (grunt) {
 					'dist/afe.min.js': [
 						'src/js/afe.js',
 						'src/js/afe.core.js',
+						'src/js/afe.form.js',
 						'src/js/afeCheckbox.js',
-						'src/js/afeRadiobox.js'
+						'src/js/afeRadiobox.js',
+						'src/js/afe.finish.js'
 					]
 				}
 			},
@@ -18,8 +20,10 @@ module.exports = function (grunt) {
 					'dist/afe.js': [
 						'src/js/afe.js',
 						'src/js/afe.core.js',
+						'src/js/afe.form.js',
 						'src/js/afeCheckbox.js',
-						'src/js/afeRadiobox.js'
+						'src/js/afeRadiobox.js',
+						'src/js/afe.finish.js'
 					]
 				},
 				options: {
