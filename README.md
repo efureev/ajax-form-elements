@@ -42,7 +42,7 @@ The component will bind to any existing DOM element.
 <input type="checkbox" id="chk2" name="chk4">
 ```
 ```javascript
-$(':checkbox').chkbox({
+$(':checkbox').afeCheckbox({
 	blick: {
 		onChecked: function (el) {
 			console.log('onChecked_over');
@@ -67,7 +67,7 @@ $(':checkbox').chkbox({
 ```
 
 ```javascript
-$(':radio').rdo({
+$(':radio').afeRadiobox({
 	notAjax: {
 		url : 'http://localhost:63342',
 		onSelect: function (el) {
