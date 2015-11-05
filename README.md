@@ -34,3 +34,4 @@ Add the following resources for the ajax-form-elements to function correctly.
 The component will bind to any existing DOM element.
 
 ### see Example
+![2cdde00c2d](https://cloud.githubusercontent.com/assets/5524684/10981423/8c5973c6-8429-11e5-9198-db17579018df.jpg)
