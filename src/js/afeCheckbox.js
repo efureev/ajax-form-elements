@@ -7,16 +7,14 @@ Afe.form.checkbox = function (options) {
 		},
 		$default = {
 			onChecked: function (el, e) {
-				var url = el.data('url');
-				if (!Afe.isDefinded(url))
+				if (!Afe.isDefinded(this.url))
 					return;
-				return post(url, {name: el.attr('name'), value: e.type});
+				return post(this.url, {name: el.attr('name'), value: e.type});
 			},
 			onUnchecked: function (el, e) {
-				var url = el.data('url');
-				if (!Afe.isDefinded(url))
+				if (!Afe.isDefinded(this.url))
 					return;
-				return post(url, {name: el.attr('name'), value: e.type});
+				return post(this.url, {name: el.attr('name'), value: e.type});
 			},
 			onSuccess: function (data) {
 			},
@@ -35,21 +33,41 @@ Afe.form.checkbox = function (options) {
 			$this.data('checkbox-replaced', true);
 
 			var type = $this.data('type'),
-				$l = $('<label for="' + $this.attr('id') + '" class="chkbox"></label>'),
-				y = '<span class="yes">checked</span>',
-				n = '<span class="no">unchecked</span>',
-				t = '<span class="toggle"></span>',
+				fieldset = $this.closest('fieldset'),
+				commonUrl = Afe.isDefinded(fieldset) ? fieldset.data('url') : false,
+				url = $this.data('url'),
+				label = $this.data('label'),
+				$l = $('<label for="' + $this.attr('id') + '" class="chkbox">' +
+					'<span class="yes">checked</span>' +
+					'<span class="no">unchecked</span>' +
+					'<span class="toggle"></span>' +
+					'</label>'),
+				$w = $('<div class="wrap"></div>'),
 				_default = $.extend(true, {}, $default);
 
-			$l.append(y, n, t).insertBefore($this);
+			$w.append($l);
+
+			if (Afe.isDefinded(label)) {
+				$w.append('<span class="label">' + label + '</span>');
+			}
+			$w.insertBefore($this);
+
+			if (Afe.isDefinded(commonUrl)) {
+				_default.url = commonUrl;
+			}
 
 			if (Afe.isDefinded(type) && Afe.isObject(options[type])) {
 
 				Object.keys(options[type]).forEach(function (property) {
 					if (Afe.isDefinded($default[property]) && Afe.isFunction(options[type][property])) {
 						_default[property] = options[type][property];
+						_default.url = options[type].url;
 					}
 				});
+			}
+
+			if (Afe.isDefinded(url)) {
+				_default.url = url;
 			}
 
 			$this
@@ -58,11 +76,11 @@ Afe.form.checkbox = function (options) {
 					if ($this.is(':checked')) {
 						$l.addClass('on');
 						$this.trigger('checked');
+
 					} else {
 						$l.removeClass('on');
 						$this.trigger('unchecked');
 					}
-
 					$this.trigger('focus');
 				})
 				.on('focus', function () {

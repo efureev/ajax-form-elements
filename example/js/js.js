@@ -17,5 +17,10 @@ $(':radio').afeRadiobox({
 		onSelect: function (el) {
 			console.log('onSelect_over');
 		}
+	},
+	alarm: {
+		onSelect: function (el) {
+			alert(el.attr('id'));
+		}
 	}
 });

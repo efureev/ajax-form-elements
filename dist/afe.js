@@ -72,17 +72,15 @@ Afe.form.checkbox = function(a) {
         return $.post(a, b, Afe.isFunction(c.onSuccess) ? c.onSuccess : Afe.noop()).done(Afe.isFunction(c.onDone) ? c.onDone : Afe.noop()).fail(Afe.isFunction(c.onFail) ? c.onFail : Afe.noop()).always(Afe.isFunction(c.onAlways) ? c.onAlways : Afe.noop());
     }, c = {
         onChecked: function(a, c) {
-            var d = a.data("url");
-            if (!Afe.isDefinded(d)) return;
-            return b(d, {
+            if (!Afe.isDefinded(this.url)) return;
+            return b(this.url, {
                 name: a.attr("name"),
                 value: c.type
             });
         },
         onUnchecked: function(a, c) {
-            var d = a.data("url");
-            if (!Afe.isDefinded(d)) return;
-            return b(d, {
+            if (!Afe.isDefinded(this.url)) return;
+            return b(this.url, {
                 name: a.attr("name"),
                 value: c.type
             });
@@ -96,37 +94,48 @@ Afe.form.checkbox = function(a) {
         var e = $(d);
         if (e.is(":checkbox") && !e.data("checkbox-replaced")) {
             e.data("checkbox-replaced", true);
-            var f = e.data("type"), g = $('<label for="' + e.attr("id") + '" class="chkbox"></label>'), h = '<span class="yes">checked</span>', i = '<span class="no">unchecked</span>', j = '<span class="toggle"></span>', k = $.extend(true, {}, c);
-            g.append(h, i, j).insertBefore(e);
+            var f = e.data("type"), g = e.closest("fieldset"), h = Afe.isDefinded(g) ? g.data("url") : false, i = e.data("url"), j = e.data("label"), k = $('<label for="' + e.attr("id") + '" class="chkbox">' + '<span class="yes">checked</span>' + '<span class="no">unchecked</span>' + '<span class="toggle"></span>' + "</label>"), l = $('<div class="wrap"></div>'), m = $.extend(true, {}, c);
+            l.append(k);
+            if (Afe.isDefinded(j)) {
+                l.append('<span class="label">' + j + "</span>");
+            }
+            l.insertBefore(e);
+            if (Afe.isDefinded(h)) {
+                m.url = h;
+            }
             if (Afe.isDefinded(f) && Afe.isObject(a[f])) {
                 Object.keys(a[f]).forEach(function(b) {
                     if (Afe.isDefinded(c[b]) && Afe.isFunction(a[f][b])) {
-                        k[b] = a[f][b];
+                        m[b] = a[f][b];
+                        m.url = a[f].url;
                     }
                 });
             }
+            if (Afe.isDefinded(i)) {
+                m.url = i;
+            }
             e.addClass("replaced").on("change", function() {
                 if (e.is(":checked")) {
-                    g.addClass("on");
+                    k.addClass("on");
                     e.trigger("checked");
                 } else {
-                    g.removeClass("on");
+                    k.removeClass("on");
                     e.trigger("unchecked");
                 }
                 e.trigger("focus");
             }).on("focus", function() {
-                g.addClass("focus");
+                k.addClass("focus");
             }).on("blur", function() {
-                g.removeClass("focus");
+                k.removeClass("focus");
             }).on("checked", function(a) {
-                k.onChecked(e, a);
+                m.onChecked(e, a);
             }).on("unchecked", function(a) {
-                k.onUnchecked(e, a);
+                m.onUnchecked(e, a);
             });
             if (e.is(":checked")) {
-                g.addClass("on");
+                k.addClass("on");
             } else {
-                g.removeClass("on");
+                k.removeClass("on");
             }
         }
     });
@@ -153,39 +162,41 @@ Afe.form.radiobox = function(a) {
         var e = $(d);
         if (e.is(":radio") && !e.data("radio-replaced")) {
             e.data("radio-replaced", true);
-            var f = e.data("type"), g = e.data("url"), h = $('<label for="' + e.attr("id") + '" class="radio"></label>'), i = '<span class="pip"></span>', j = $.extend(true, {}, c);
-            h.append(i).insertBefore(e);
+            var f = e.data("type"), g = e.closest("fieldset"), h = Afe.isDefinded(g) ? g.data("url") : false, i = e.data("url"), j = e.data("label"), k = e.is(":checked"), l = $('<label for="' + e.attr("id") + '" class="radio"></label>'), m = '<span class="back"></span>', n = '<span class="pip"></span>', o = $.extend(true, {}, c);
+            j = Afe.isDefinded(j) ? '<span class="label">' + j + "</span>" : "";
+            l.append(m).append(j).append(n).insertBefore(e);
+            if (Afe.isDefinded(h)) {
+                o.url = h;
+            }
             if (Afe.isDefinded(f) && Afe.isObject(a[f])) {
                 if (Afe.isDefinded(a[f].url)) {
-                    j.url = a[f].url;
+                    o.url = a[f].url;
                 }
                 Object.keys(a[f]).forEach(function(b) {
                     if (Afe.isDefinded(c[b]) && Afe.isFunction(a[f][b])) {
-                        j[b] = a[f][b];
+                        o[b] = a[f][b];
                     }
                 });
             }
-            if (Afe.isDefinded(g)) {
-                j.url = g;
+            if (Afe.isDefinded(i)) {
+                o.url = i;
             }
             e.addClass("replaced").on("change", function() {
                 $("label.radio").each(function(a, b) {
                     var c = $(b);
                     if ($("#" + c.attr("for")).is(":checked")) {
                         c.addClass("on");
-                        e.trigger("select");
                     } else {
                         c.removeClass("on");
                     }
                 });
-                e.trigger("focus");
-            }).on("focus", function() {
-                h.addClass("focus");
+                e.trigger("select");
             }).on("blur", function() {
-                h.removeClass("focus");
-            }).on("select", function() {
-                j.onSelectBasic(e);
-                j.onSelect(e);
+                l.removeClass("focus");
+            }).on("select", function(a) {
+                l.addClass("focus");
+                o.onSelectBasic(e, a);
+                o.onSelect(e, a);
             });
             $("label.radio").each(function(a, b) {
                 var c = $(b);

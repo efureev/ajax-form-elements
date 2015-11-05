@@ -27,17 +27,29 @@ Afe.form.radiobox = function (options) {
 	return $(this).each(function (k, v) {
 
 		var $this = $(v);
+
 		if ($this.is(':radio') && !$this.data('radio-replaced')) {
 
 			$this.data('radio-replaced', true);
 
 			var type = $this.data('type'),
+				fieldset = $this.closest('fieldset'),
+				commonUrl = Afe.isDefinded(fieldset) ? fieldset.data('url') : false,
 				url = $this.data('url'),
+				label = $this.data('label'),
+				checked = $this.is(':checked'),
 				$l = $('<label for="' + $this.attr('id') + '" class="radio"></label>'),
+				b = '<span class="back"></span>',
 				p = '<span class="pip"></span>',
 				_default = $.extend(true, {}, $default);
 
-			$l.append(p).insertBefore($this);
+			label = Afe.isDefinded(label) ? '<span class="label">' + label + '</span>' : '';
+
+			$l.append(b).append(label).append(p).insertBefore($this);
+
+			if (Afe.isDefinded(commonUrl)) {
+				_default.url = commonUrl;
+			}
 
 			if (Afe.isDefinded(type) && Afe.isObject(options[type])) {
 
@@ -64,25 +76,20 @@ Afe.form.radiobox = function (options) {
 						var $value = $(value);
 						if ($('#' + $value.attr('for')).is(':checked')) {
 							$value.addClass('on');
-							$this.trigger('select');
 						} else {
 							$value.removeClass('on');
 						}
-
 					});
+					$this.trigger('select');
 
-					$this.trigger('focus');
-
-				})
-				.on('focus', function () {
-					$l.addClass('focus')
 				})
 				.on('blur', function () {
 					$l.removeClass('focus')
 				})
-				.on('select', function () {
-					_default.onSelectBasic($this);
-					_default.onSelect($this);
+				.on('select', function (e) {
+					$l.addClass('focus');
+					_default.onSelectBasic($this, e);
+					_default.onSelect($this, e);
 				});
 
 			// check if the radio is checked on init.

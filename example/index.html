@@ -4,19 +4,85 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<link href="css/afe.min.css" media="all" rel="stylesheet" type="text/css"/>
+	<link href="css/css.css" media="all" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <div class="wrapper">
 
-	<input type="checkbox" id="chk" name="chk" data-url="http://localhost:63342">
-	<input type="checkbox" id="chk2" name="chk2" data-type="blick" checked>
+	<fieldset>
+		<input type="checkbox" id="chk8" name="chk8" data-label="Yes: Да, бывает" checked>
+		<input type="checkbox" id="chk9" name="chk9" data-label="No!!!">
+	</fieldset>
+
+	<fieldset class="right-title">
+		<legend>Right title</legend>
+		<input type="checkbox" id="chk83" name="chk83" data-label="Yes: Да, бывает" checked>
+		<input type="checkbox" id="chk93" name="chk93" data-label="No!!!">
+	</fieldset>
+
+	<fieldset class="center-title">
+		<legend>Center title</legend>
+		<input type="checkbox" id="chk81" name="chk81" data-label="Yes: Да, бывает" checked>
+		<input type="checkbox" id="chk92" name="chk92" data-label="No!!!">
+	</fieldset>
+
+	<fieldset data-url="http://localhost:63342">
+		<legend>Common URL</legend>
+		<input type="checkbox" id="chk10" name="chk10" data-label="Yes: Да, бывает" checked>
+		<input type="checkbox" id="chk11" name="chk11" data-label="No!!!">
+	</fieldset>
+
+	<fieldset class="reverse" data-url="http://localhost:63342">
+		<legend>Reverse</legend>
+		<input type="checkbox" id="chk12" name="chk12" data-label="Yes: Да, бывает" checked>
+		<input type="checkbox" id="chk13" name="chk13" data-label="No!!!">
+	</fieldset>
 
 	<br><br>
+	<fieldset>
+		<legend>Custom URL and Custome Action</legend>
+		<input type="radio" id="rdbox" name="rdbox" data-label="Yes: Да, бывает" data-url="http://localhost:63342"
+			   value="1">
+		<input type="radio" id="rdbox2" name="rdbox" data-label="No: нет" data-type="notAjax" value="2">
+		<input type="radio" id="rdbox3" name="rdbox" data-label="Не знаю!" checked value="3">
+	</fieldset>
 
-	<input type="radio" id="rdbox" name="rdbox" data-url="http://localhost:63342" value="1">
-	<input type="radio" id="rdbox2" name="rdbox" data-type="notAjax" value="2">
-	<input type="radio" id="rdbox3" name="rdbox" checked value="3">
+	<fieldset class="inline" data-url="http://localhost:63342">
+		<legend>2. Common URL and Inline</legend>
+		<input type="radio" id="rdbox4" name="rdbox22" data-label="Yes: Да, бывает" value="1">
+		<input type="radio" id="rdbox5" name="rdbox22" data-label="No: нет" data-url="http://localhost" value="2">
+		<input type="radio" id="rdbox6" name="rdbox22" data-label="Не знаю!" checked value="3">
+	</fieldset>
+
+	<fieldset data-url="http://localhost:63342">
+		<legend>3. Common URL and Custom URL</legend>
+		<input type="radio" id="rdbox21" name="rdbox2" data-label="Yes: Да, бывает" value="1">
+		<input type="radio" id="rdbox22" name="rdbox2" data-label="No: нет" data-url="http://localhost" value="2">
+		<input type="radio" id="rdbox23" name="rdbox2" data-label="Не знаю!" value="3">
+	</fieldset>
+
+	<fieldset class="no-border">
+		<legend>4. noBorder</legend>
+		<input type="radio" id="a" name="rdbox3" data-label="Yes: Да, бывает" value="1">
+		<input type="radio" id="s" name="rdbox3" data-label="No: нет" data-type="notAjax" value="2">
+		<input type="radio" id="d" name="rdbox3" data-label="Не знаю!" checked value="3">
+	</fieldset>
+
+
+	<fieldset class="no-border inline">
+		<input type="radio" id="sad431" data-label="Yes: Да, бывает" name="rdbox4" value="1">
+		<input type="radio" id="sad31" name="rdbox4" data-label="No: нет" checked value="2">
+		<input type="radio" id="sad3" name="rdbox4" data-label="Не знаю!" value="3">
+	</fieldset>
+
+	<fieldset>
+		<legend>6. Nothing</legend>
+		<input type="radio" id="sad34" name="rdbox6" data-label="Yes: Да, бывает" value="1">
+		<input type="radio" id="sad2" name="rdbox6" data-label="No: нет" value="2">
+		<input type="radio" id="sad" name="rdbox6" data-label="Не знаю!" checked value="3">
+	</fieldset>
+
 
 </div>
 <script src="js/jquery.min.js"></script>

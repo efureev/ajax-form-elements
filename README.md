@@ -33,46 +33,4 @@ Add the following resources for the ajax-form-elements to function correctly.
 
 The component will bind to any existing DOM element.
 
-#### Checkbox 
-
-```html
-<input type="checkbox" id="chk" name="chk" data-url="http://localhost:63342">
-<input type="checkbox" id="chk2" name="chk2" data-type="blick" checked>
-<input type="checkbox" id="chk2" name="chk3" data-type="type2" checked>
-<input type="checkbox" id="chk2" name="chk4">
-```
-```javascript
-$(':checkbox').afeCheckbox({
-	blick: {
-		onChecked: function (el) {
-			console.log('onChecked_over');
-		},
-		onUnchecked: function (el) {
-			console.log('onUnchecked_over');
-		}
-	},
-	type2 : {
-	...
-	}
-});
-```
-
-
-#### Radiobox 
-
-```html
-<input type="radio" id="rdbox" name="rdbox" data-url="http://localhost:63342" value="1">
-<input type="radio" id="rdbox2" name="rdbox" data-type="notAjax" value="2">
-<input type="radio" id="rdbox3" name="rdbox" checked value="3">
-```
-
-```javascript
-$(':radio').afeRadiobox({
-	notAjax: {
-		url : 'http://localhost:63342',
-		onSelect: function (el) {
-			console.log('onSelect_over');
-		}
-	}
-});
-```
+### see Example
