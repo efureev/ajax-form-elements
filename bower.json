@@ -1,7 +1,7 @@
 {
   "name": "ajax-form-elements",
   "description": "Form elements with action: ajax, custom (user custom functions)",
-  "version": "0.3",
+  "version": "0.3.1",
   "homepage": "https://github.com/efureev/ajax-form-elements",
   "main": [
     "dist/afe.min.js",
